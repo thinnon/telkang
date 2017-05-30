@@ -98,17 +98,16 @@
 <h2 id="网卡如何发送数据包"><a href="#网卡如何发送数据包" class="headerlink" title="网卡如何发送数据包"></a>网卡如何发送数据包</h2><p>IP报文可以看作一个包。<br>Linux网卡驱动程序，将IP包添加14字节的MAC包头，构成MAC包。MAC包中含有发送端和接收端的MAC地址信息。既然是驱动程序创建的MAC包头信息，当然可以随便输入地址信息的，主机伪装就是这么实现的。<br>驱动程序将MAC包拷贝到网卡芯片内部的缓存区，就算完事了。有网卡芯片接手处理。网卡芯片对MAC包，再次封装成物理帧，添加头部同步信息和CRC校验。然后丢到网线上，就完成一个IP报文的发送。所有挂接到本网线的网卡都可以看到该物理帧。</p>
 <hr>
 <h2 id="网卡如何接收数据包"><a href="#网卡如何接收数据包" class="headerlink" title="网卡如何接收数据包"></a>网卡如何接收数据包</h2><p>网线可以看作一个高速公路，物理帧也就是辆汽车，网卡呢，或许是个加油站吧。从这个角度讲，汽车和加油站没有绝对的关系，所有汽车都可以进入该加油站。<br>正常情况：<br>网线上的物理帧首先被网卡芯片获取，网卡芯片会检查物理帧的CRC，保证完整性。其次，网卡芯片将物理帧头去掉，得到MAC包。<br>网卡芯片检查MAC包内的目的MAC地址信息，和本网卡的MAC地址是否一致？不一致，抛弃。<br>网卡芯片将MAC帧拷贝到网卡的内部缓冲区，触发中断。<br>驱动程序通过中断，将MAC包拷贝到系统中，构建sk_buff，告诉上层。<br>上层去掉MAC包头，得到需要的IP包。<br>过程中，网卡芯片对物理帧进行了MAC匹配过滤。这样做可以减小系统负荷。试想一下，若网卡芯片对所有的MAC帧不加判断的直接提供给驱动，让CPU判决会是什么样子呢？当总线上数据繁忙，CPU将浪费大部分时间去判断该MAC包是否是自己需要的，效率低下。</p>
-<hr>
-<h2 id="混杂模式"><a href="#混杂模式" class="headerlink" title="混杂模式"></a>混杂模式</h2><p>不正常模式（混听）：<br>网线上的物理帧首先被网卡芯片获取，网卡芯片会检查物理帧的CRC，保证完整性。其次，网卡芯片将物理帧头去掉，得到MAC包。网卡芯片发现自己当前被配置为混听模式，就不对MAC包过滤。网卡芯片将MAC帧拷贝到网卡内部的缓冲区，触发中断。驱动程序通过中断，将MAC包拷贝到系统中，构建sk_buff，告诉上层。上层去掉MAC包头，得到需要的IP包。显然，这里的IP包并不一定是发给自己的。</p>
-<p>驱动的问题：<br>网卡到底能不能接收其他MAC包，完全取决于网卡芯片中RCR( receive control register )配置。驱动程序是决定网卡能否工作于混听模式的桥梁。混听模式会加重CPU的负荷，而且也是不符合标准应用的！</p>
-<p>所有的车辆都要从加油站穿过，（有些都不加油），加油站工作人员的任务量就可想而知。<br>当然也有例外，有些程序不通过驱动，也可以直接访问网卡芯片RCR达到设置混听模式。<br>所谓条条大路通香港，就是这个道理：）没有绝对的。</p>
-<hr>
-<h1 id="从这里开始自己的一些感悟"><a href="#从这里开始自己的一些感悟" class="headerlink" title="从这里开始自己的一些感悟"></a>从这里开始自己的一些感悟</h1><h2 id="NFV挑战"><a href="#NFV挑战" class="headerlink" title="NFV挑战"></a>NFV挑战</h2><p>NFV带来软硬件解耦，这种情况下，原CPU通过中断模式接收数据包机制仍然存在，但因为网卡和最终要接收数据的CPU（虚拟机所在CPU核）无对应关系，存在二次CPU中断获取数据的问题，造成性能低下。DPDK通过预留专有CPU核来获取数据，而不必让处理业务的CPU核等中断，SR-IOV直接在网卡上加载数据包和虚拟机对应关系，然后网卡上的加载的软件直接将数据写入虚拟机对应的内存，绕过了CloudOS（Hypervisor）的OVS处理。</p>
-
+<h2 id=""><a href="#" class="headerlink" title=""></a>
+        
+          <p class="article-more-link">
+            <a href="/2017/05/31/网络数据发送接收方式/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.telkang.com/2017/05/31/网络数据发送接收方式/" data-id="cj3bzdv9a0009ucrw38dvqyi8" class="article-share-link">Share</a>
+      <a data-url="https://www.telkang.com/2017/05/31/网络数据发送接收方式/" data-id="cj3bzfep1000bo8rwqmyjio6f" class="article-share-link">Share</a>
       
       
     </footer>
@@ -155,7 +154,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.telkang.com/2017/05/31/20170531/" data-id="cj3bzdv8u0002ucrw626aful2" class="article-share-link">Share</a>
+      <a data-url="https://www.telkang.com/2017/05/31/20170531/" data-id="cj3bzfeol0000o8rw6wnpwkjp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -201,7 +200,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.telkang.com/2017/05/30/souq/" data-id="cj3bzdv9a0008ucrwa2b63jpv" class="article-share-link">Share</a>
+      <a data-url="https://www.telkang.com/2017/05/30/souq/" data-id="cj3bzfep10008o8rwdmmo748n" class="article-share-link">Share</a>
       
       
     </footer>
@@ -243,7 +242,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.telkang.com/2017/05/30/kids-in-fun/" data-id="cj3bzdv9a0005ucrwf70tfppe" class="article-share-link">Share</a>
+      <a data-url="https://www.telkang.com/2017/05/30/kids-in-fun/" data-id="cj3bzfeol0002o8rw7j99c5ee" class="article-share-link">Share</a>
       
       
     </footer>
@@ -286,7 +285,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.telkang.com/2017/05/30/plan/" data-id="cj3bzdv9a0006ucrwz9y01pfu" class="article-share-link">Share</a>
+      <a data-url="https://www.telkang.com/2017/05/30/plan/" data-id="cj3bzfep10006o8rwi7rdvag2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -332,7 +331,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.telkang.com/2017/05/29/Etisalat “unlock & Earn”，计费能力变现的尝试/" data-id="cj3bzdv8u0004ucrwtmliggus" class="article-share-link">Share</a>
+      <a data-url="https://www.telkang.com/2017/05/29/Etisalat “unlock & Earn”，计费能力变现的尝试/" data-id="cj3bzfep10005o8rw4j0dzapn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -385,7 +384,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.telkang.com/2017/05/28/Crazy Etisalat 600/" data-id="cj3bzdv8e0000ucrwj4usbvg4" class="article-share-link">Share</a>
+      <a data-url="https://www.telkang.com/2017/05/28/Crazy Etisalat 600/" data-id="cj3bzfeol0004o8rwz1a3xgnd" class="article-share-link">Share</a>
       
       
     </footer>
@@ -426,7 +425,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.telkang.com/2017/05/28/重新捡起技术/" data-id="cj3bzdv9a000eucrw9jp1kyoe" class="article-share-link">Share</a>
+      <a data-url="https://www.telkang.com/2017/05/28/重新捡起技术/" data-id="cj3bzfepg000eo8rwx1k5rrq2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -467,7 +466,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.telkang.com/2017/05/27/感谢/" data-id="cj3bzdv9a000bucrwp5w6pmoq" class="article-share-link">Share</a>
+      <a data-url="https://www.telkang.com/2017/05/27/感谢/" data-id="cj3bzfep10009o8rwmjnp8wl9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -517,7 +516,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.telkang.com/2017/05/27/转型计划201705/" data-id="cj3bzdv9a000cucrww2s0140z" class="article-share-link">Share</a>
+      <a data-url="https://www.telkang.com/2017/05/27/转型计划201705/" data-id="cj3bzfep1000co8rwzpmxpxaq" class="article-share-link">Share</a>
       
       
     </footer>
