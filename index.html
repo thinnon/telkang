@@ -115,12 +115,12 @@
 当然也有例外，有些程序不通过驱动，也可以直接访问网卡芯片RCR达到设置混听模式。
 所谓 条条大路通香港，就是这个道理：）没有绝对的。
 </code></pre><hr>
-<h1 id="从这里开始自己感悟："><a href="#从这里开始自己感悟：" class="headerlink" title="从这里开始自己感悟："></a>从这里开始自己感悟：</h1><h1 id="NFV挑战"><a href="#NFV挑战" class="headerlink" title="NFV挑战"></a>NFV挑战</h1><pre><code>NFV带来软硬件解耦，这种情况下，原CPU通过中断模式接收数据包机制仍然存在，但因为网卡和最终要接收数据的CPU（虚拟机所在CPU核）无对应关系，存在二次CPU中断获取数据的问题，带来性能低下。DPDK通过预留专有CPU核来获取数据，而不必让处理业务的CPU核等中断，SR-IOV直接在网卡上加载数据包和虚拟机对应关系，然后网卡上的加载的软件直接将数据写入虚拟机对应的内存，绕过了CloudOS（Hypervisor）的OVS处理。
+<h1 id="从这里开始自己感悟："><a href="#从这里开始自己感悟：" class="headerlink" title="从这里开始自己感悟："></a>从这里开始自己感悟：</h1><h1 id="NFV挑战"><a href="#NFV挑战" class="headerlink" title="NFV挑战"></a>NFV挑战</h1><pre><code>NFV带来软硬件解耦，这种情况下，原CPU通过中断模式接收数据包机制仍然存在，但因为网卡和最终要接收数据的CPU（虚拟机所在CPU核）无对应关系，存在二次CPU中断获取数据的问题，造成性能低下。DPDK通过预留专有CPU核来获取数据，而不必让处理业务的CPU核等中断，SR-IOV直接在网卡上加载数据包和虚拟机对应关系，然后网卡上的加载的软件直接将数据写入虚拟机对应的内存，绕过了CloudOS（Hypervisor）的OVS处理。
 </code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.telkang.com/2017/05/31/网络数据发送接收方式/" data-id="cj3byvy1g000bp0rwdyhhzxcz" class="article-share-link">Share</a>
+      <a data-url="https://www.telkang.com/2017/05/31/网络数据发送接收方式/" data-id="cj3bywdop000bk4rwnyvcoa5a" class="article-share-link">Share</a>
       
       
     </footer>
@@ -166,7 +166,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.telkang.com/2017/05/31/20170531/" data-id="cj3byvy0l0001p0rwrh92u59e" class="article-share-link">Share</a>
+      <a data-url="https://www.telkang.com/2017/05/31/20170531/" data-id="cj3bywdnu0000k4rw2uy4jyyf" class="article-share-link">Share</a>
       
       
     </footer>
@@ -212,7 +212,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.telkang.com/2017/05/30/souq/" data-id="cj3byvy1g0008p0rww4fmarl4" class="article-share-link">Share</a>
+      <a data-url="https://www.telkang.com/2017/05/30/souq/" data-id="cj3bywdo90006k4rwye9zfwsi" class="article-share-link">Share</a>
       
       
     </footer>
@@ -254,7 +254,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.telkang.com/2017/05/30/kids-in-fun/" data-id="cj3byvy100005p0rwrz195k4r" class="article-share-link">Share</a>
+      <a data-url="https://www.telkang.com/2017/05/30/kids-in-fun/" data-id="cj3bywdo90004k4rwzka08ak9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -297,7 +297,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.telkang.com/2017/05/30/plan/" data-id="cj3byvy1g0006p0rwfxq1uc3p" class="article-share-link">Share</a>
+      <a data-url="https://www.telkang.com/2017/05/30/plan/" data-id="cj3bywdop0008k4rwj39rr2yo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -343,7 +343,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.telkang.com/2017/05/29/Etisalat “unlock & Earn”，计费能力变现的尝试/" data-id="cj3byvy100004p0rwy2bdkmp6" class="article-share-link">Share</a>
+      <a data-url="https://www.telkang.com/2017/05/29/Etisalat “unlock & Earn”，计费能力变现的尝试/" data-id="cj3bywdo90005k4rwsuczw6ba" class="article-share-link">Share</a>
       
       
     </footer>
@@ -396,7 +396,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.telkang.com/2017/05/28/Crazy Etisalat 600/" data-id="cj3byvy100002p0rwqvth0tg0" class="article-share-link">Share</a>
+      <a data-url="https://www.telkang.com/2017/05/28/Crazy Etisalat 600/" data-id="cj3bywdo90002k4rw8r45t9kk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -437,7 +437,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.telkang.com/2017/05/28/重新捡起技术/" data-id="cj3byvy1g000cp0rwzuprj16v" class="article-share-link">Share</a>
+      <a data-url="https://www.telkang.com/2017/05/28/重新捡起技术/" data-id="cj3bywdop000ek4rwdu3fp2cs" class="article-share-link">Share</a>
       
       
     </footer>
@@ -478,7 +478,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.telkang.com/2017/05/27/感谢/" data-id="cj3byvy1g0009p0rw08p0uwmt" class="article-share-link">Share</a>
+      <a data-url="https://www.telkang.com/2017/05/27/感谢/" data-id="cj3bywdop0009k4rwafwzw5oo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -528,7 +528,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.telkang.com/2017/05/27/转型计划201705/" data-id="cj3byvy1v000ep0rwfxjzcq1e" class="article-share-link">Share</a>
+      <a data-url="https://www.telkang.com/2017/05/27/转型计划201705/" data-id="cj3bywdop000ck4rwvnk8ihco" class="article-share-link">Share</a>
       
       
     </footer>

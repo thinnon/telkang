@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="Blog of Telkang">
 <meta property="og:description" content="网卡如何发送数据包：IP报文可以看作一个包。    Linux网卡驱动程序，将IP包添加14字节的MAC包头，构成MAC包。    MAC包中含有发送端和接收端的MAC地址信息。既然是驱动程序创建的MAC包头信息，当然可以随便输入地址信息的，主机伪装就是这么实现的。 驱动程序将MAC包拷贝到网卡芯片内部的缓存区，就算完事了。有网卡芯片接手处理。网卡芯片对MAC包，再次封装成物理帧，添加头部同步信">
 <meta property="og:image" content="http://blog.21ic.org/user1/1066/archives/2007/40803.html">
-<meta property="og:updated_time" content="2017-05-30T19:39:40.833Z">
+<meta property="og:updated_time" content="2017-05-30T19:40:06.631Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络数据发送接收方式">
 <meta name="twitter:description" content="网卡如何发送数据包：IP报文可以看作一个包。    Linux网卡驱动程序，将IP包添加14字节的MAC包头，构成MAC包。    MAC包中含有发送端和接收端的MAC地址信息。既然是驱动程序创建的MAC包头信息，当然可以随便输入地址信息的，主机伪装就是这么实现的。 驱动程序将MAC包拷贝到网卡芯片内部的缓存区，就算完事了。有网卡芯片接手处理。网卡芯片对MAC包，再次封装成物理帧，添加头部同步信">
@@ -116,12 +116,12 @@
 当然也有例外，有些程序不通过驱动，也可以直接访问网卡芯片RCR达到设置混听模式。
 所谓 条条大路通香港，就是这个道理：）没有绝对的。
 </code></pre><hr>
-<h1 id="从这里开始自己感悟："><a href="#从这里开始自己感悟：" class="headerlink" title="从这里开始自己感悟："></a>从这里开始自己感悟：</h1><h1 id="NFV挑战"><a href="#NFV挑战" class="headerlink" title="NFV挑战"></a>NFV挑战</h1><pre><code>NFV带来软硬件解耦，这种情况下，原CPU通过中断模式接收数据包机制仍然存在，但因为网卡和最终要接收数据的CPU（虚拟机所在CPU核）无对应关系，存在二次CPU中断获取数据的问题，带来性能低下。DPDK通过预留专有CPU核来获取数据，而不必让处理业务的CPU核等中断，SR-IOV直接在网卡上加载数据包和虚拟机对应关系，然后网卡上的加载的软件直接将数据写入虚拟机对应的内存，绕过了CloudOS（Hypervisor）的OVS处理。
+<h1 id="从这里开始自己感悟："><a href="#从这里开始自己感悟：" class="headerlink" title="从这里开始自己感悟："></a>从这里开始自己感悟：</h1><h1 id="NFV挑战"><a href="#NFV挑战" class="headerlink" title="NFV挑战"></a>NFV挑战</h1><pre><code>NFV带来软硬件解耦，这种情况下，原CPU通过中断模式接收数据包机制仍然存在，但因为网卡和最终要接收数据的CPU（虚拟机所在CPU核）无对应关系，存在二次CPU中断获取数据的问题，造成性能低下。DPDK通过预留专有CPU核来获取数据，而不必让处理业务的CPU核等中断，SR-IOV直接在网卡上加载数据包和虚拟机对应关系，然后网卡上的加载的软件直接将数据写入虚拟机对应的内存，绕过了CloudOS（Hypervisor）的OVS处理。
 </code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.telkang.com/2017/05/31/网络数据发送接收方式/" data-id="cj3byvy1g000bp0rwdyhhzxcz" class="article-share-link">Share</a>
+      <a data-url="https://www.telkang.com/2017/05/31/网络数据发送接收方式/" data-id="cj3bywdop000bk4rwnyvcoa5a" class="article-share-link">Share</a>
       
       
     </footer>
