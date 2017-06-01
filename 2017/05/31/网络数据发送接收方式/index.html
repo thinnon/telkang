@@ -16,8 +16,6 @@
 <meta name="twitter:title" content="网络数据发送接收方式和NFV相关优化">
 <meta name="twitter:description" content="原文出处 网卡如何发送数据包IP报文可以看作一个包。Linux网卡驱动程序，将IP包添加14字节的MAC包头，构成MAC包。MAC包中含有发送端和接收端的MAC地址信息。既然是驱动程序创建的MAC包头信息，当然可以随便输入地址信息的，主机伪装就是这么实现的。驱动程序将MAC包拷贝到网卡芯片内部的缓存区，就算完事了。有网卡芯片接手处理。网卡芯片对MAC包，再次封装成物理帧，添加头部同步信息和CRC校">
   
-    <link rel="alternate" href="/atom.xml" title="Blog of Telkang" type="application/atom+xml">
-  
   
     <link rel="icon" href="/favicon.png">
   
@@ -53,10 +51,12 @@
         
           <a class="main-nav-link" href="/archives">Archives</a>
         
+          <a class="main-nav-link" href="/about">about</a>
+        
+          <a class="main-nav-link" href="/atom.xml">rss</a>
+        
       </nav>
       <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
         <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
@@ -106,7 +106,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.telkang.com/2017/05/31/网络数据发送接收方式/" data-id="cj3eo8al1000eysrw0ajts1g6" class="article-share-link">Share</a>
+      <a data-url="http://www.telkang.com/2017/05/31/网络数据发送接收方式/" data-id="cj3eoadqd000e74rweisa0d3i" class="article-share-link">Share</a>
       
       
     </footer>
@@ -234,6 +234,10 @@
     <a href="/" class="mobile-nav-link">Home</a>
   
     <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">about</a>
+  
+    <a href="/atom.xml" class="mobile-nav-link">rss</a>
   
 </nav>
     
